@@ -48,6 +48,25 @@ userRouter.get("/", isAuth, isAdmin, expressasynchandler(async(req, res)=>{
     }
 }))
 
+
+userRouter.delete("/:id", isAuth, isAdmin, expressasynchandler(async (req, res)=>{
+    const {id} = req.params
+    const user = User.findById(id)
+    if (user) {
+        // console.log(user)
+        if (user.isAdmin){
+            res.status(400).send({ message: 'Can Not Delete Admin User' });
+            return;
+        }else{
+            await user.remove()
+            res.send({ message: 'User Deleted' });
+        }
+    } else {
+        res.status(401).send({message: "User not found"})
+    }
+}))
+
+
 userRouter.post("/register", expressasynchandler(async(req, res)=>{
     const {email, password, name} = req.body;
     const newUser = new User({
@@ -58,12 +77,40 @@ userRouter.post("/register", expressasynchandler(async(req, res)=>{
     const user = await newUser.save()
     res.status(200).send({
         _id: user._id,
-        name: user.email,
+        name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
         token: generateToken(user)
     })} 
 ))
+
+
+
+userRouter.get("/admin/user/:id", isAuth, isAdmin, expressasynchandler(async(req, res)=>{
+    const {id} = req.params
+    const user = await User.findById(id)
+    if (user) {
+        res.send(user);
+      } else {
+        res.status(404).send({ message: 'User Not Found' });
+      }
+}))
+
+
+userRouter.put("/admin/user/:id", isAuth, isAdmin, expressasynchandler(async(req, res)=>{
+    const {id} = req.params
+    const user = await User.findById(id)
+    if (user) {
+        const {name, email, isAdmin} = req.body
+        user.name = name;
+        user.email = email;
+        user.isAdmin = Boolean(isAdmin);
+        const updatedUser = await user.save()
+        res.status(201).send({message: "User update successful",  user: updatedUser})
+      } else {
+        res.status(404).send({ message: 'User Not Found' });
+      }
+}))
 
 
 userRouter.put("/profile", isAuth, expressasynchandler(async(req, res)=>{
