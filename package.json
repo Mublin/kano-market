@@ -4,7 +4,7 @@
   "description": "future of kano",
   "main": "index.js",
   "scripts": {
-    "build": "cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
     "start": "node backend/server.js"
   },
   "repository": {
