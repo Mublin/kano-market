@@ -4,7 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import seedRouter from "./routes/seedRoutes.js";
-import productRouter from "./routes/ProductRoute.js";
+import productRouter from "./routes/productRoute.js";
 import userRouter from "./routes/userRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import uploadRouter from "./routes/uploadRoute.js";
