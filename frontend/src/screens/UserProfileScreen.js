@@ -33,7 +33,7 @@ function UserProfile(){
             if (newPassword !== cPassword) {
                 return toast.error("New password does not match")
             }
-            const {data} = await axios.put(`http://localhost:4550/api/users/profile`, {
+            const {data} = await axios.put(`/api/users/profile`, {
                 name,
                 email,
                 password,

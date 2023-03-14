@@ -17,7 +17,7 @@ function SignInScreen(){
     const submitHandler = async(e) =>{
         e.preventDefault();
         try {
-            const {data} = await axios.post(`http://localhost:4550/api/users/signin`, {
+            const {data} = await axios.post(`/api/users/signin`, {
                 email,
                 password
             })

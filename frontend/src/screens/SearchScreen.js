@@ -74,7 +74,7 @@ function SearchScreen() {
     const addToCartHandler = async (item)=>{
       const existItem = cart.cartItems.find((x)=> x._id == item._id)
       const quantity = existItem ? existItem.quantity + 1 : 1;
-      const {data} = await axios.get(`http://localhost:4550/api/product/${item._id}`)
+      const {data} = await axios.get(`/api/product/${item._id}`)
       if(data.inStock < quantity){
           window.alert("Sorry, Product is out of stock")
       }
@@ -87,7 +87,7 @@ function SearchScreen() {
     useEffect(()=>{
       const fetchData = async () =>{
         try {
-           const {data} = await axios.get(`http://localhost:4550/api/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`) 
+           const {data} = await axios.get(`/api/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`) 
            dispatch({ type: "FETCH_SUCCESS", payload: data})
         } catch (error) {
             dispatch({
@@ -102,7 +102,7 @@ function SearchScreen() {
     useEffect(()=>{
       const fetchCategories = async () =>{
         try {
-          const {data} = await axios.get(`http://localhost:4550/api/categories`)
+          const {data} = await axios.get(`/api/categories`)
           setCategories(data)
         } catch (error) {
           toast.error(getError(error))

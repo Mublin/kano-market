@@ -27,7 +27,7 @@ function DashboardScreen() {
         const fetchData = async ()=>{
             try {
                 dispatch({type: "FETCH_REQUEST"})
-                const {data} = await axios.get(`http://localhost:4550/api/orders/summary`, {
+                const {data} = await axios.get(`/api/orders/summary`, {
                     headers: {Authorization: `Bearer ${userInfo.token}`}
                 })
                 dispatch({type: "FETCH_SUCCESS", payload : data})

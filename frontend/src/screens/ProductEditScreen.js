@@ -60,7 +60,7 @@ function ProductEditScreen() {
         const fetchData = async ()=>{
             try {
                 dispatch({ type: 'FETCH_REQUEST' })
-                const {data} = await axios.get(`http://localhost:4550/api/admin/product/${id}`, {
+                const {data} = await axios.get(`/api/admin/product/${id}`, {
                     headers : {
                         Authorization: `Bearer ${userInfo.token}`
                     }
@@ -86,7 +86,7 @@ function ProductEditScreen() {
         dispatch({ type: 'UPLOAD_REQUEST' });
         try {
           
-          const { data } = await axios.post('http://localhost:4550/api/upload', bodyFormData, {
+          const { data } = await axios.post('/api/upload', bodyFormData, {
             headers: {
               'Content-Type': 'multipart/form-data',
               authorization: `Bearer ${userInfo.token}`,
@@ -106,7 +106,7 @@ function ProductEditScreen() {
         e.preventDefault();
         try {
             dispatch({type: "UPDATE_REQUEST"})
-            const {data} = await axios.put(`http://localhost:4550/api/product/${id}`, {
+            const {data} = await axios.put(`/api/product/${id}`, {
                 name,
                 img,
                 images,

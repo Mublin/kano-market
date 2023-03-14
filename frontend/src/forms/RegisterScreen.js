@@ -19,7 +19,7 @@ function RegisterScreen(){
         e.preventDefault()
         if (password.length > 3 && password === cPassword) {
             try {
-                const {data} = await axios.post(`http://localhost:4550/api/users/register`, {
+                const {data} = await axios.post(`/api/users/register`, {
                     name,
                     email,
                     password

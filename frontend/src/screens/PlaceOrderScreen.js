@@ -41,7 +41,7 @@ function PlaceOrderScreen() {
         console.log(cart.itemsPrice)
          try {
             dispatch({type: "CREATE_REQUEST"})
-            const {data} = await axios.post(`http://localhost:4550/api/orders`, {
+            const {data} = await axios.post(`/api/orders`, {
                 orderItems: cart.cartItems,
                 shippingAddress: cart.shippingAddress,
                 paymentMethod: cart.paymentMethod,

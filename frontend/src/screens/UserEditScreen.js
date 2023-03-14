@@ -45,7 +45,7 @@ function UserEditScreen() {
         const fetchData = async () =>{
             try {
                 dispatch({type: "FETCH_REQUEST"})
-                const {data} = await axios.get(`http://localhost:4550/api/users/admin/user/${userId}`, {
+                const {data} = await axios.get(`/api/users/admin/user/${userId}`, {
                     headers: {
                         Authorization: `Bearer ${userInfo.token}`
                     }
@@ -65,7 +65,7 @@ function UserEditScreen() {
         e.preventDefault();
         try {
             dispatch({type: "UPDATE_REQUEST"})
-            const {data} = await axios.put(`http://localhost:4550/api/users/admin/user/${userId}`, {
+            const {data} = await axios.put(`/api/users/admin/user/${userId}`, {
                 name,
                 email,
                 isAdmin

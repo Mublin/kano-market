@@ -48,7 +48,7 @@ function OrderListScreen() {
         const fetchData = async ()=>{
             dispatch({type: "FETCH_REQUEST"})
             try {
-                const {data} = await axios.get(`http://localhost:4550/api/orders/admin?page=${page}`, {
+                const {data} = await axios.get(`/api/orders/admin?page=${page}`, {
                     headers : {
                         Authorization: `Bearer ${userInfo.token}`
                     }
@@ -69,7 +69,7 @@ function OrderListScreen() {
         if (window.confirm('Are you sure to delete?')) {
           try {
             dispatch({ type: 'DELETE_REQUEST' });
-            await axios.delete(`http://localhost:4550/api/orders/${order._id}`, {
+            await axios.delete(`/api/orders/${order._id}`, {
               headers: { Authorization: `Bearer ${userInfo.token}` },
             });
             toast.success('order deleted successfully');
